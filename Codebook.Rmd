@@ -1,0 +1,56 @@
+---
+title: "CodeBook"
+author: "Jason"
+date: "2/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Purpose
+
+This codebook describes the data, variables, and any transformations or work to clean up the data for the Final Project of the Johns Hopkins Getting and Cleaning Data Coursera class.
+
+
+
+
+## Data
+
+The data was downloaded from the url: "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip" and unzipped
+into the UCI HAR Dataset folder.
+
+The textfiles were read into dataframes:
+
+* subject_test <-"subject_test.txt"  _2947 rows of one variable describing the test subject number of 9 out of the 30 subjects_
+* subject_train<- "subject_train.txt"  _7352 rows of one variable containing the train subject number of 21 of the 30  subjects_ 
+* test_numbers<- "y_test.txt"  _2947 rows of one variable containing the test activity number_
+* train_numbers<-"y_train.txt"  _7352 rows of one variable containing the test activity number_
+* activity_labels<-"activity_labels.txt"  _6 rows of two variables containing the test activity number and corresponding test activity_
+* features<-"features.txt"  _Character vector of the 561 measurements captured for each activity performed by each subject_
+* X_test<-"X_test.txt"  _2947 rows of the 561 measurement values taken for 9 test subjects_
+* X_train<-"X_train.txt"  _7352 rows of the 561 measurement values taken for 21 train subjects_
+
+## Variables
+
+* **subject**---The number of the subject 1 through 30
+* **activity**---The activity the subject was measured for, the number in parenthesis represents the activity label in the test,train_numbers data frames.  
+    + Walking (1)
+    + Walking_Upstairs (2)
+    + Walking_Downstairs (3)
+    + Sitting (4)
+    + Standing (5)
+    + Laying (6)
+* **Measurements**---561 variables corresponding to various acceleration means, magnitudes, and standard deviations.
+
+## Cleaning and Transformation Tasks
+
+1.The first task after reading in the data consisted of joining subject_train and subject_test data frames with the corresponding test and train numbers data frames to link the activity for each row.
+
+2.The features character vector was cleaned to remove () for easier reading and manipulation and added as the column header to the test and training data.
+
+3.The test and training data were column binded with the joined data frame from step 1 and subsequently rowbinded together.
+
+4.THe columns were filtered based on variables which contained the values _mean_ or _std_.
+
+5.The dataframe was finally subsetted to calculate the mean of each variable grouped by subject and activity.  The resulting dataset was stored in **Subject_Activity_Means** which consists of 180 rows of 88 variables.

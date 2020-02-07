@@ -1,0 +1,23 @@
+---
+title: "README"
+author: "Jason"
+date: "2/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description
+
+This readme lists and briefly describes the files submitted for the final project of the Johns Hopkins Getting and Cleaning Data Coursera course.
+
+## Files
+
+* **run_analysis.r**--- Contains the script which loads, formats, and subsets the data based on the assignment instructions. Contains comments describing the code.
+
+* **tidydata.txt**---Contains the subsetted data frame generated from the run_analysis.r script containing the mean of the measurements grouped by subject and activity.
+
+* **Codebook.md**---Contains a description of the imported data sets, variables, and lists of tasks to clean and subset the data.
+
